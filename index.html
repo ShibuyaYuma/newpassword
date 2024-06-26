@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="password.css">
-    <title>PassWord</title>
+    <title>パスワード作成アプリ</title>
   </head>
 
   
@@ -17,14 +17,17 @@
         使用しない文字
         <input type="text"id="text"value=",.;:(){}[]">
     </div><br><br>
-
-    <label id="addElement">
-      <button id="createPassword" type="button">パスワード作成</button>
-      <div id="result">Password</div>
-      <button id="copy" type="button">コピー</button>
-      <button id="showHide" type="button">表示/非表示</button>
-      <br>
-    </label>
+    <div id="container">
+        <div class="password-container">
+            <label id="addElement">
+            <button id="createPassword" type="button">パスワード作成</button>
+            <div id="result">Password</div>
+            <button id="copy" type="button">コピー</button>
+            <button id="showHide" type="button">表示/非表示</button>
+            <br>
+            </label>
+        </div>
+    </div>
     <div id="buttons-container"></div>
     <button id="add" type="button" value="追加">追加</button>
     
