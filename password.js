@@ -57,26 +57,31 @@ function copyPW(button,result){
 }
 
 function hidePW(button,result){
+    
+    const arry=[];
+    let hide ;
     button.addEventListener('click', ()=>{
+        if(result.textContent !== hide){
+            arry.push(result.textContent);
+        }
         if(result.textContent=="Password"){
             alert("パスワードを作成してください");
         }
         else{
-            let hide ="";
+            hide = "";
             for(i=0;i<result.textContent.length;i++){
                 hide+='●';
             }
-            const isResult = result.textContent;
-            const isHidden = result.textContent === result.textContent;
-            //alert(isResult);
-            //alert(isHidden);
-            //alert(result.textContent);
-            result.textContent = isHidden ? hide : isResult;
+            const isResult = arry[0];
+            const isHidden = result.textContent === isResult;
+            result.style.display = isHidden ? hide : arry[0];
+            
+            
         }
     });
 }
 
-function duplicate(button,result){
+function duplicate(){
     // 親要素（container）を取得
     const container = document.getElementById('container');
         
