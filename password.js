@@ -44,7 +44,6 @@ function createPWEvent(button,result){
 }
 
 function copyPW(button,result){
-    //alert("CPP");
     button.addEventListener('click', ()=>{
         
         if(result.textContent=="Password"){
@@ -63,8 +62,16 @@ function hidePW(button,result){
             alert("パスワードを作成してください");
         }
         else{
-            showHide++;
-            printResult();
+            let hide ="";
+            for(i=0;i<result.textContent.length;i++){
+                hide+='●';
+            }
+            const isResult = result.textContent;
+            const isHidden = result.textContent === result.textContent;
+            //alert(isResult);
+            //alert(isHidden);
+            //alert(result.textContent);
+            result.textContent = isHidden ? hide : isResult;
         }
     });
 }
@@ -88,7 +95,7 @@ function duplicate(button,result){
     // 新しい複製要素に含まれる結果表示要素の内容を空欄にリセット
     newResult.textContent = "Password";
     
-    // 新しい複製要素に含まれるパスワード生成ボタンにイベントリスナーを設定
+    // 新しい複製要素に含まれるパスワード作成ボタンにイベントリスナーを設定
     createPWEvent(newButton, newResult);
     
     // 新しい複製要素に含まれる表示/非表示ボタンにイベントリスナーを設定
