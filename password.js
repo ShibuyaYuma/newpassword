@@ -51,7 +51,7 @@ function copyPW(button,result){
         }
         else{
             alert("パスワードをコピーしました");
-            navigator.clipboard.writeText(result.textContent);
+            navigator.clipboard.writeText(arry[0]);
         }
     });
 }
@@ -74,7 +74,7 @@ function hidePW(button,result){
             }
             const isResult = arry[0];
             const isHidden = result.textContent === isResult;
-            result.style.display = isHidden ? hide : arry[0];
+            result.textContent = isHidden ? hide : arry[0];
             
             
         }
