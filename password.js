@@ -1,9 +1,7 @@
 let newChars="";//使用しない文字列を抜いた文字列
-
-let showHide = 0;
-let clickCreatePWBtn = 0;
 const allChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()=~^-\\@`[{;+:*]},<.>/?\_";
 let targetChars = "";
+let copyStr = "";
 const len = document.getElementById('strLength');
 
 
@@ -24,38 +22,40 @@ function createPW(){
     }
 }
 
+//パスワード作成関数
 function createPWEvent(button,result){
-    
+    //クリックイベント
     button.addEventListener('click', ()=>{
-        
-        clickCreatePWBtn ++;
+        //createPW関数の戻り値をpassword変数に入れる
         const password= createPW();
-        if(showHide%2==1){
-            let hide ="";
-            for(i=0;i<len.value;i++){
-                hide +=".";
-            }
-            result.textContent = hide;
-        }
-        else{
-            result.textContent = password;
-        }
+        result.textContent = password;
+        copyStr = password;
+       
     });
 }
 
+//パスワードコピー関数
 function copyPW(button,result){
+    //クリックイベント
     button.addEventListener('click', ()=>{
-        
+        //テキストボックスが初期値の場合
         if(result.textContent=="Password"){
             alert("パスワードを作成してください");
         }
+        //テキストボックスが初期値以外の場合
         else{
             alert("パスワードをコピーしました");
-            navigator.clipboard.writeText(arry[0]);
+            if(copyStr!==""){
+                navigator.clipboard.writeText(copyStr);
+            }
+            else{
+                navigator.clipboard.writeText(result.textContent);
+            }
         }
     });
 }
 
+//表示非表示切替関数
 function hidePW(button,result){
     
     const arry=[];
@@ -72,15 +72,17 @@ function hidePW(button,result){
             for(i=0;i<result.textContent.length;i++){
                 hide+='●';
             }
-            const isResult = arry[0];
-            const isHidden = result.textContent === isResult;
-            result.textContent = isHidden ? hide : arry[0];
             
+            const isResult = arry[arry.length-1];
+            const isHidden = result.textContent === isResult;
+            result.textContent = isHidden ? hide : arry[arry.length-1];
+            copyStr = arry[arry.length-1];
             
         }
     });
 }
 
+//複製関数
 function duplicate(){
     // 親要素（container）を取得
     const container = document.getElementById('container');
@@ -113,6 +115,8 @@ function duplicate(){
     container.appendChild(newContainer);
 }
 
+
+//起動時に実行
 document.addEventListener("DOMContentLoaded" , () =>{
     
     const createPWBtn = document.getElementById('createPassword');//オブジェクトを取得
@@ -127,4 +131,5 @@ document.addEventListener("DOMContentLoaded" , () =>{
 
 });
 
+//追加ボタンクリック時のイベント
 document.getElementById('add').addEventListener('click', duplicate);
